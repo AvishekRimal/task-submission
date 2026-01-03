@@ -16,13 +16,18 @@ The project follows a **feature-based architecture**, keeping related logic grou
 
 src/
 ├── components/
-│ └── ui/ # Reusable UI components (Button, Input, etc.)
+│   └── ui/              # Reusable, "dumb" UI components (Button, Input)
 ├── features/
-│ └── users/
-│ ├── api/ # Axios calls and React Query hooks
-│ ├── components/ # User-specific components (UserTable, UserForm)
-│ ├── store/ # Zustand store for UI state
-│ └── schema/ # Zod validation schemas
+│   └── user/            # Self-contained domain module for User Management
+│       ├── schema/      # Zod validation schemas & TypeScript interfaces
+│       ├── services/    # API calls (Axios) and server-state hooks (React Query)
+│       ├── store/       # Client-side UI state management (Zustand)
+│       ├── User.tsx     # Feature entry point (orchestrator)
+│       ├── UserForm.tsx # Logic-heavy Formik component
+│       └── UserTable.tsx# Presentational table with pagination
+├── pages/               # Page-level containers (UserPage.tsx)
+├── App.tsx              # Main routing and provider setup
+└── main.tsx 
 
 
 ## State Management Approach
